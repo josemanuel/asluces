@@ -7,7 +7,7 @@
 <meta name="description" content="Novela ambientada en O Courel. Una castaña en el umbral, una abuela desaparecida y unos hilos dorados que atan el tiempo. Próximamente.">
 <meta property="og:title" content="As luces que atan o tempo">
 <meta property="og:description" content="Una novela en el Courel de los soutos milenarios. Escribe al autor y entérate cuándo sale.">
-<meta property="og:image" content="portada_asluces.jpg">
+<meta property="og:image" content="portada_asluces.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌰%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -79,6 +79,16 @@ h2{font-family:var(--deco);font-weight:700;color:var(--oro);font-size:clamp(1.6r
 .sin-decir blockquote{margin:0 auto;max-width:28ch;font-size:clamp(1.7rem,4vw,2.6rem);font-style:italic;line-height:1.35;color:var(--niebla)}
 .sin-decir p{max-width:56ch;margin:1.8rem auto 0;color:var(--texto)}
 
+/* BANDA SONORA */
+.banda{background:var(--musgo);padding-top:0}
+.banda .wrap{max-width:900px}
+.banda h2{text-align:center;max-width:22ch;margin-inline:auto}
+.banda .intro{text-align:center;color:var(--niebla);font-style:italic;max-width:46ch;margin:0 auto 2.5rem}
+.album{margin:0}
+.album iframe{width:100%;height:300px;border:0;border-radius:3px;box-shadow:0 14px 34px rgba(0,0,0,.4)}
+.album figcaption{margin-top:.8rem;text-align:center;font-size:1.1rem;color:var(--texto)}
+.album figcaption span{color:var(--suave);font-style:italic}
+
 /* CONTACTO */
 .contacto{background:linear-gradient(180deg,var(--musgo),var(--bosque))}
 .contacto .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:3.5rem;align-items:start}
@@ -122,7 +132,7 @@ footer p{margin:.3rem 0}
   <div class="wrap">
     <div class="txt">
       <h1>As luces que<br>atan o tempo</h1>
-      <p class="lema">Muy pronto podrás descubrir As luces que atan o tempo, una novela en la que Lúa, siguiendo las huellas de una herencia familiar y la desaparición de su abuela, se adentra en los secretos de los soutos milenarios de O Courel. Un lugar donde el paisaje, la memoria y las antiguas leyendas parecen guardar sus propias respuestas.</p>
+      <p class="lema">Muy pronto podrás descubrir As luces que atan o tempo, una novela en la que Lúa, siguiendo las huellas de una herencia familiar, se adentra en los secretos de los soutos milenarios de O Courel. Un lugar donde el paisaje, la memoria y las antiguas leyendas parecen guardar sus propias respuestas.</p>
       <p class="autor">Novela de José Manuel Fernández Carreira, ambientada en O Courel. Próximamente.</p>
       <a class="btn" href="#contacto">Quiero saber cuándo sale</a>
     </div>
@@ -166,6 +176,14 @@ footer p{margin:.3rem 0}
   <div class="wrap">
     <blockquote>¿Qué hacemos con los silencios que nos dejan quienes nos precedieron?</blockquote>
     <p>El miedo de esta historia tiene que ver con perder: a alguien, una historia, un nombre. Por eso, junto a la inquietud, hay ternura. Lo que sigue prefiero que lo descubras leyendo.</p>
+  </div>
+</section>
+
+<section class="banda" id="banda" hidden>
+  <div class="wrap">
+    <h2>Para romper el silencio, deja que suene el bosque</h2>
+    <p class="intro">Dos piezas compuestas para el libro. Escúchalas sin prisa, como quien camina bajo los castaños, y después escríbeme.</p>
+    <figure class="album" id="album"></figure>
   </div>
 </section>
 
@@ -215,6 +233,25 @@ footer p{margin:.3rem 0}
 // y pega aquí su URL (https://formspree.io/f/xxxxxxx). Si queda vacío, se abre el correo del visitante.
 var FORM_ENDPOINT = "";
 var AUTOR_EMAIL = "jmfcarreira@gmail.com";
+
+// Banda sonora: álbum público de SoundCloud. Si la URL queda vacía, el bloque se oculta.
+var ALBUM_URL = "https://soundcloud.com/jmfcarreira/sets/as-luces-que-atan-o-tempo";
+var ALBUM_TITULO = "As luces que atan o tempo";
+(function(){
+  if (!ALBUM_URL) return;
+  var cont = document.getElementById("album");
+  var i = document.createElement("iframe");
+  i.title = "Reproductor de SoundCloud: banda sonora de " + ALBUM_TITULO;
+  i.loading = "lazy"; i.allow = "autoplay"; i.scrolling = "no";
+  i.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(ALBUM_URL) +
+    "&color=%23e2bc66&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false";
+  var c = document.createElement("figcaption");
+  c.appendChild(document.createTextNode("Banda sonora original "));
+  var sp = document.createElement("span"); sp.textContent = "· " + ALBUM_TITULO;
+  c.appendChild(sp);
+  cont.appendChild(i); cont.appendChild(c);
+  document.getElementById("banda").hidden = false;
+})();
 
 var form = document.getElementById("form");
 var estado = document.getElementById("estado");
