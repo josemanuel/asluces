@@ -7,7 +7,7 @@
 <meta name="description" content="Novela ambientada en O Courel. Una castaña en el umbral, una abuela desaparecida y unos hilos dorados que atan el tiempo. Próximamente.">
 <meta property="og:title" content="As luces que atan o tempo">
 <meta property="og:description" content="Una novela en el Courel de los soutos milenarios. Escribe al autor y entérate cuándo sale.">
-<meta property="og:image" content="portada_asluces.png">
+<meta property="og:image" content="imagenes/portada_asluces.jpg">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🌰%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -106,6 +106,10 @@ textarea{min-height:9rem;resize:vertical}
 #estado.ok{color:#b8e0a0}#estado.error{color:#f2b8a0}
 .hp{position:absolute;left:-9999px}
 
+/* FIRMA: el PNG es bronce oscuro sobre transparente; el filtro lo vuelve dorado para que se lea sobre el fondo del bosque */
+.sello{background:var(--bosque);padding-block:1rem 0;text-align:center}
+.sello img{width:min(340px,70%);height:auto;margin-inline:auto;opacity:.92;
+  filter:brightness(0) invert(1) sepia(1) saturate(2.2) brightness(.92)}
 footer{padding:2.5rem 0 3rem;text-align:center;color:var(--suave);font-size:1.05rem;background:var(--bosque)}
 footer p{margin:.3rem 0}
 
@@ -137,7 +141,7 @@ footer p{margin:.3rem 0}
       <a class="btn" href="#contacto">Quiero saber cuándo sale</a>
     </div>
     <div class="portada">
-      <img src="portada_asluces.jpg" width="1240" height="1748" alt="Portada de As luces que atan o tempo: una mujer con mochila camina por un bosque de castaños centenarios entre hilos dorados">
+      <img src="imagenes/portada_asluces.jpg" width="1240" height="1748" alt="Portada de As luces que atan o tempo: una mujer con mochila camina por un bosque de castaños centenarios entre hilos dorados">
     </div>
   </div>
 </header>
@@ -221,6 +225,9 @@ footer p{margin:.3rem 0}
     </form>
   </div>
 </section>
+<div class="sello">
+  <img src="imagenes/jmfc_firma.png" width="725" height="257" alt="Firma ornamental de J. M. Carreira, con nudos y animales de inspiración celta" loading="lazy">
+</div>
 </main>
 
 <footer>
