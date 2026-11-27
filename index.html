@@ -426,7 +426,7 @@ var PISTAS = [
   audio.addEventListener("loadedmetadata", function(){ $("t1").textContent = fmt(audio.duration); dibujar(); });
   audio.addEventListener("timeupdate", function(){ $("t0").textContent = fmt(audio.currentTime); });
   audio.addEventListener("error", function(){
-    if (cargada) $("pl-estado").textContent = "No se pudo cargar «" + PISTAS[cur].t + "». Comprueba que el archivo está en la carpeta music.";
+    if (cargada) $("pl-estado").textContent = "No se pudo cargar «" + PISTAS[cur].t + "». Archivo buscado: " + decodeURI(mp3(cur)) + " (debe existir en el repositorio, con esas mayúsculas).";
   });
 
   /* Buscar en la onda: clic, arrastre o teclado */
