@@ -84,10 +84,40 @@ h2{font-family:var(--deco);font-weight:700;color:var(--oro);font-size:clamp(1.6r
 .banda .wrap{max-width:900px}
 .banda h2{text-align:center;max-width:22ch;margin-inline:auto}
 .banda .intro{text-align:center;color:var(--niebla);font-style:italic;max-width:46ch;margin:0 auto 2.5rem}
-.album{margin:0}
-.album iframe{width:100%;height:300px;border:0;border-radius:3px;box-shadow:0 14px 34px rgba(0,0,0,.4)}
-.album figcaption{margin-top:.8rem;text-align:center;font-size:1.1rem;color:var(--texto)}
-.album figcaption span{color:var(--suave);font-style:italic}
+.player{display:grid;grid-template-columns:260px 1fr;gap:1.8rem;padding:1.4rem;border-radius:4px;
+  background:rgba(8,16,11,.55);border:1px solid rgba(226,188,102,.28);box-shadow:0 18px 44px rgba(0,0,0,.45)}
+.cover{aspect-ratio:1;border-radius:3px;overflow:hidden;background:linear-gradient(160deg,var(--musgo),#0b140e)}
+.cover img{width:100%;height:100%;object-fit:cover}
+.panel{min-width:0}
+.alb{margin:0 0 .2rem;color:var(--suave);font-size:1.05rem;font-style:italic}
+.panel h3{margin:0 0 1rem;font-weight:600;font-size:1.7rem;line-height:1.2;color:var(--oro)}
+.ctrl{display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem}
+.ctrl button{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;border:1px solid rgba(226,188,102,.5);
+  background:transparent;color:var(--oro);cursor:pointer}
+.ctrl button:hover{background:rgba(226,188,102,.15)}
+.ctrl button.pp{width:56px;height:56px;background:var(--oro);color:#1b1407;border-color:var(--oro)}
+.ctrl button.pp:hover{background:#f0cf82}
+.ctrl svg{width:22px;height:22px;fill:currentColor}
+.pp .i-pausa,.sonando .pp .i-play{display:none}
+.sonando .pp .i-pausa{display:block}
+.barra{display:flex;align-items:center;gap:.7rem;font-size:1rem;color:var(--suave);font-variant-numeric:tabular-nums}
+.barra input,.vol input{accent-color:var(--oro);padding:0;border:0;background:none;height:1.6rem}
+.barra input{flex:1;min-width:0}
+.vol{display:flex;align-items:center;gap:.6rem;margin:.5rem 0 1.1rem;font-size:1rem;color:var(--suave)}
+.vol input{width:130px}
+.lista{list-style:none;margin:0;padding:0;border-top:1px solid rgba(207,224,220,.18)}
+.lista li{border-bottom:1px solid rgba(207,224,220,.12)}
+.lista button{display:flex;align-items:center;gap:.9rem;width:100%;padding:.5rem .4rem;background:none;border:0;
+  color:var(--texto);font:inherit;font-size:1.15rem;text-align:left;cursor:pointer}
+.lista button:hover{background:rgba(226,188,102,.08)}
+.lista img{width:44px;height:44px;object-fit:cover;border-radius:2px;flex:none;background:var(--musgo)}
+.lista .n{width:1.2rem;color:var(--suave);text-align:center;flex:none}
+.lista .on{color:var(--oro)}
+.lista .on .n::before{content:"♪";color:var(--oro)}
+.lista .on .n span{display:none}
+#pl-estado{min-height:1.4em;margin:.6rem 0 0;font-size:1rem;color:#f2b8a0}
+.nota-bucle{text-align:center;margin:1.2rem 0 0;color:var(--suave);font-size:1.05rem}
+@media (max-width:720px){.player{grid-template-columns:1fr;padding:1rem}.cover{width:min(100%,320px);margin-inline:auto}}
 
 /* CONTACTO */
 .contacto{background:linear-gradient(180deg,var(--musgo),var(--bosque))}
@@ -183,11 +213,30 @@ footer p{margin:.3rem 0}
   </div>
 </section>
 
-<section class="banda" id="banda" hidden>
+<section class="banda" id="banda">
   <div class="wrap">
     <h2>Para romper el silencio, deja que suene el bosque</h2>
-    <p class="intro">Dos piezas compuestas para el libro. Escúchalas sin prisa, como quien camina bajo los castaños, y después escríbeme.</p>
-    <figure class="album" id="album"></figure>
+    <p class="intro">Tres piezas compuestas para el libro. Escúchalas sin prisa, como quien camina bajo los castaños, y después escríbeme.</p>
+    <div class="player" id="player" role="group" aria-label="Banda sonora: As luces que atan o tempo">
+      <div class="cover"><img id="cover" src="music/As%20luces%20que%20atan%20o%20tempo.jpg" width="400" height="400" alt="Carátula de la banda sonora As luces que atan o tempo"></div>
+      <div class="panel">
+        <p class="alb">Banda sonora original · As luces que atan o tempo</p>
+        <h3 id="tit">As luces que atan o tempo</h3>
+        <div class="ctrl">
+          <button type="button" id="prev" aria-label="Tema anterior"><svg viewBox="0 0 24 24"><path d="M6 5h2v14H6zM20 5v14L9.5 12z"/></svg></button>
+          <button type="button" id="pp" class="pp" aria-label="Reproducir">
+            <svg class="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <svg class="i-pausa" viewBox="0 0 24 24"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+          </button>
+          <button type="button" id="next" aria-label="Tema siguiente"><svg viewBox="0 0 24 24"><path d="M16 5h2v14h-2zM4 5l10.5 7L4 19z"/></svg></button>
+        </div>
+        <div class="barra"><span id="t0">0:00</span><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posición en el tema"><span id="t1">0:00</span></div>
+        <label class="vol">Volumen <input type="range" id="vol" min="0" max="1" step="0.05" value="0.8"></label>
+        <ol class="lista" id="lista"></ol>
+        <p id="pl-estado" role="status" aria-live="polite"></p>
+      </div>
+    </div>
+    <p class="nota-bucle">Al pulsar reproducir, los tres temas suenan por orden y vuelven a empezar.</p>
   </div>
 </section>
 
@@ -241,23 +290,90 @@ footer p{margin:.3rem 0}
 var FORM_ENDPOINT = "";
 var AUTOR_EMAIL = "jmfcarreira@gmail.com";
 
-// Banda sonora: álbum público de SoundCloud. Si la URL queda vacía, el bloque se oculta.
-var ALBUM_URL = "https://soundcloud.com/jmfcarreira/sets/as-luces-que-atan-o-tempo";
-var ALBUM_TITULO = "As luces que atan o tempo";
+// Banda sonora: reproductor propio. Los archivos están en la carpeta "music" del repositorio.
+// No arranca solo: la música sólo suena cuando el visitante pulsa reproducir.
+var MUSICA = "music/";
+var ARTISTA = "José Manuel Fernández Carreira", ALBUM = "As luces que atan o tempo";
+var PISTAS = [
+  { t: "Voz Branca Neboeira",     f: "Voz Branca Neboeira" },
+  { t: "Baixo os Castiñeiros",    f: "Baixo os Castineiros" },
+  { t: "Luces que atan o tempo",  f: "Luces que atan o tempo" }
+];
 (function(){
-  if (!ALBUM_URL) return;
-  var cont = document.getElementById("album");
-  var i = document.createElement("iframe");
-  i.title = "Reproductor de SoundCloud: banda sonora de " + ALBUM_TITULO;
-  i.loading = "lazy"; i.allow = "autoplay"; i.scrolling = "no";
-  i.src = "https://w.soundcloud.com/player/?url=" + encodeURIComponent(ALBUM_URL) +
-    "&color=%23e2bc66&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false&visual=false";
-  var c = document.createElement("figcaption");
-  c.appendChild(document.createTextNode("Banda sonora original "));
-  var sp = document.createElement("span"); sp.textContent = "· " + ALBUM_TITULO;
-  c.appendChild(sp);
-  cont.appendChild(i); cont.appendChild(c);
-  document.getElementById("banda").hidden = false;
+  var $ = function(i){ return document.getElementById(i); };
+  var player = $("player"), audio = new Audio(), cur = 0, cargada = false, arrastrando = false;
+  audio.preload = "none";
+  var mp3 = function(i){ return encodeURI(MUSICA + PISTAS[i].f + ".mp3"); };
+  var jpg = function(i){ return encodeURI(MUSICA + PISTAS[i].f + ".jpg"); };
+  var portadaAlbum = $("cover").getAttribute("src");
+  var fmt = function(s){ if(!isFinite(s)) return "0:00"; var m=Math.floor(s/60), r=Math.floor(s%60); return m+":"+(r<10?"0":"")+r; };
+
+  var lista = $("lista"), botones = [];
+  PISTAS.forEach(function(p, i){
+    var li = document.createElement("li"), b = document.createElement("button");
+    b.type = "button";
+    var n = document.createElement("span"); n.className = "n"; var ns = document.createElement("span"); ns.textContent = i+1; n.appendChild(ns);
+    var im = document.createElement("img"); im.src = jpg(i); im.alt = ""; im.loading = "lazy"; im.onerror = function(){ this.style.visibility="hidden"; };
+    var tx = document.createElement("span"); tx.textContent = p.t;
+    b.appendChild(n); b.appendChild(im); b.appendChild(tx);
+    b.addEventListener("click", function(){ if (i === cur && cargada) alternar(); else ir(i); });
+    li.appendChild(b); lista.appendChild(li); botones.push(b);
+  });
+
+  function marcar(){
+    botones.forEach(function(b,i){ b.classList.toggle("on", cargada && i===cur); });
+  }
+  function cargar(i){
+    cur = i; cargada = true; $("pl-estado").textContent = "";
+    audio.src = mp3(i);
+    var c = $("cover"); c.onerror = function(){ this.onerror=null; this.src = portadaAlbum; };
+    c.src = jpg(i); c.alt = "Carátula de " + PISTAS[i].t;
+    $("tit").textContent = PISTAS[i].t;
+    $("seek").value = 0; $("t0").textContent = "0:00"; $("t1").textContent = "0:00";
+    marcar();
+    if ("mediaSession" in navigator && window.MediaMetadata) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: PISTAS[i].t, artist: ARTISTA, album: ALBUM,
+        artwork: [{ src: new URL(jpg(i), location.href).href, sizes: "512x512" }]
+      });
+    }
+  }
+  function reproducir(){ var p = audio.play(); if (p && p.catch) p.catch(function(){}); }
+  function ir(i){ cargar((i + PISTAS.length) % PISTAS.length); reproducir(); }
+  function alternar(){
+    if (!cargada) { cargar(cur); reproducir(); }
+    else if (audio.paused) reproducir(); else audio.pause();
+  }
+  function anterior(){ if (audio.currentTime > 3) audio.currentTime = 0; else ir(cur - 1); }
+  function siguiente(){ ir(cur + 1); }
+
+  $("pp").addEventListener("click", alternar);
+  $("prev").addEventListener("click", anterior);
+  $("next").addEventListener("click", siguiente);
+  audio.addEventListener("play", function(){ player.classList.add("sonando"); $("pp").setAttribute("aria-label","Pausar"); });
+  audio.addEventListener("pause", function(){ player.classList.remove("sonando"); $("pp").setAttribute("aria-label","Reproducir"); });
+  audio.addEventListener("ended", siguiente);   // bucle continuo: tras el último vuelve al primero
+  audio.addEventListener("loadedmetadata", function(){ $("t1").textContent = fmt(audio.duration); });
+  audio.addEventListener("timeupdate", function(){
+    $("t0").textContent = fmt(audio.currentTime);
+    if (!arrastrando && audio.duration) $("seek").value = Math.round(audio.currentTime / audio.duration * 1000);
+  });
+  audio.addEventListener("error", function(){
+    if (cargada) $("pl-estado").textContent = "No se pudo cargar «" + PISTAS[cur].t + "». Comprueba que el archivo está en la carpeta music.";
+  });
+  var seek = $("seek");
+  seek.addEventListener("input", function(){ arrastrando = true; $("t0").textContent = fmt(audio.duration * seek.value / 1000); });
+  seek.addEventListener("change", function(){ if (audio.duration) audio.currentTime = audio.duration * seek.value / 1000; arrastrando = false; });
+  var vol = $("vol"); audio.volume = parseFloat(vol.value);
+  vol.addEventListener("input", function(){ audio.volume = parseFloat(vol.value); });
+  if ("mediaSession" in navigator) {
+    try {
+      navigator.mediaSession.setActionHandler("play", alternar);
+      navigator.mediaSession.setActionHandler("pause", alternar);
+      navigator.mediaSession.setActionHandler("previoustrack", anterior);
+      navigator.mediaSession.setActionHandler("nexttrack", siguiente);
+    } catch (e) {}
+  }
 })();
 
 var form = document.getElementById("form");
