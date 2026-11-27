@@ -1,0 +1,17 @@
+ El volumen de la unidad C no tiene etiqueta.
+ El n£mero de serie del volumen es: 66AE-D586
+
+ Directorio de C:\Users\jmfca\Desktop\Seleccion\Nueva carpeta\musica
+
+27/11/2026  08:50    <DIR>          .
+27/11/2026  08:50    <DIR>          ..
+26/11/2026  18:55           175.821 As luces que atan o tempo.jpg
+26/11/2026  19:17           203.609 Baixo os Casti¤eiros.jpg
+24/11/2026  14:39         6.396.682 Baixo os Casti¤eiros.mp3
+27/11/2026  08:50                 0 files.txt
+26/11/2026  19:10           150.240 Luces que atan o tempo - Orquestal.jpg
+26/11/2026  17:26        11.025.075 Luces que atan o tempo - Orquestal.mp3
+26/11/2026  19:12           183.015 Voz Branca Neboeira.jpg
+04/10/2026  18:02         7.999.424 Voz Branca Neboeira.mp3
+               8 archivos     26.133.866 bytes
+               2 dirs  50.717.138.944 bytes libres
